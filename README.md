@@ -15,7 +15,7 @@ You can upload files to the backend either via a normal form submit or via AJAX 
 
 - The package also includes a frontend fileinput plugin from Krajee for quickly demonstrating the AJAX uploading. The assets included in the package are barely minimum and may not be up to date. You should consult http://plugins.krajee.com/file-input for the latest version and more advanced use cases of the plugin  
 
-- Full plugin version can be installed via ```npm install bootstrap-fileinput```  
+- The Krajee plugin's full version can be installed via ```npm install bootstrap-fileinput```  
 
 - In order to use the included frontend assets, run
 ```php artisan vendor:publish --tag=bkstar123_fileupload.assets```  
