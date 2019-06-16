@@ -6,15 +6,18 @@ Provide a Laravel backend for handling file upload
 It is recommended to install this package with PHP version 7.1.3 & higher and Laravel Framework version 5.4.* & higher  
 
 ## 2.Installation  
-```composer require bkstar123/laravel-uploader```    
+    composer require bkstar123/laravel-uploader
 
 You can upload files to the backend either via a normal form submit or via AJAX calls (built by yourself or any third party plugins).  
 
-**Note**: Form submit supports only single file upload. For multiple files upload, you should use AJAX uploading  
+**Note**: 
+- Form submit supports only single file upload. For multiple files upload, you should use AJAX uploading  
 
-The package also includes a frontend fileinput plugin from Krajee for demonstrating the AJAX uploading. The assets included in the package may not be up to date. You should consult http://plugins.krajee.com/file-input for the latest version and more advanced use cases of the plugin  
+- The package also includes a frontend fileinput plugin from Krajee for quickly demonstrating the AJAX uploading. The assets included in the package are barely minimum and may not be up to date. You should consult http://plugins.krajee.com/file-input for the latest version and more advanced use cases of the plugin  
 
-In order to use the included frontend assets, run
+- Full plugin version can be installed via ```npm install bootstrap-fileinput```  
+
+- In order to use the included frontend assets, run
 ```php artisan vendor:publish --tag=bkstar123_fileupload.assets```  
 
 ## 3.Usage
