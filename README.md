@@ -12,7 +12,7 @@ You can upload files to the backend either via a normal form submit or via AJAX 
 
 **Note**: Form submit supports only single file upload. For multiple files upload, you should use AJAX uploading  
 
-The package also includes a frontend fileinput plugin from Krajee for demonstrating the AJAX uploading. The assets included in the package may not be up to date. You should consult http://plugins.krajee.com/file-input for using latest versions and more advanced use case of the plugin  
+The package also includes a frontend fileinput plugin from Krajee for demonstrating the AJAX uploading. The assets included in the package may not be up to date. You should consult http://plugins.krajee.com/file-input for the latest version and more advanced use cases of the plugin  
 
 In order to use the included frontend assets, run
 ```php artisan vendor:publish --tag=bkstar123_fileupload.assets```  
@@ -107,7 +107,7 @@ If the uploaded file is not valid, then ```false``` will be returned and an erro
 
     <!-- You must embed fileinput CSS and Javascript as follows -->
     <script src="/vendor/fileupload/js/fileinput/fileinput.min.js"></script>
-	<link href="/vendor/fileupload/css/fileinput/fileinput.min.css" rel="stylesheet">
+    <link href="/vendor/fileupload/css/fileinput/fileinput.min.css" rel="stylesheet">
 </head>
 <body>
 <form action="/upload" method="POST" role="form" enctype="multipart/form-data">
