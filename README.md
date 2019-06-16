@@ -1,5 +1,5 @@
 # laravel-uploader    
-Provide a Laravrl backend for handling file upload  
+Provide a Laravel backend for handling file upload  
 
 ## 1.Requirements  
 
