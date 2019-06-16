@@ -8,7 +8,7 @@
 namespace Bkstar123\LaravelUploader;
 
 use Illuminate\Support\ServiceProvider;
-use Bkstar123\LaravelUploader\Services\FileUpload;
+use Bkstar123\LaravelUploader\Services\FileUploadMgmt;
 use Bkstar123\LaravelUploader\Contracts\FileUpload as FileUploadContract;
 
 class LaravelUploaderServiceProvider extends ServiceProvider
@@ -34,6 +34,6 @@ class LaravelUploaderServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(FileUploadContract::class, FileUpload::class);
+        $this->app->singleton(FileUploadContract::class, FileUploadMgmt::class);
     }
 }

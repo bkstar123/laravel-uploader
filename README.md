@@ -155,3 +155,14 @@ return json_encode([
     'error' => $this->fileupload->uploadError
 ]);
 ```
+
+### 3.3 Physically remove an uploaded file
+
+You can physically delete an uploaded file as following example:    
+```php
+$this->fileupload->delete($photo->disk, $photo->path)
+```
+
+In this example, the **photos** table must have ```disk``` and ```path``` columns to persist a ```photo``` instance.  
+
+You should physically remove an uploaded file only after delete its relevent record in the database.    
