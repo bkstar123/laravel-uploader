@@ -115,7 +115,7 @@ class FileUpload extends FileUploadAbstract
     {
         $subDirectory = $this->generatePath($uploadedFile);
 
-        $storeLocation = $settings['directory'].'/'.$subDirectory;
+        $storeLocation = $settings['directory'].DIRECTORY_SEPARATOR.$subDirectory;
 
         $path = $uploadedFile->store($storeLocation, $settings['disk']);
 
