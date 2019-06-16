@@ -165,4 +165,4 @@ $this->fileupload->delete($photo->disk, $photo->path)
 
 In this example, the **photos** table must have ```disk``` and ```path``` columns to persist a ```photo``` instance.  
 
-You should physically remove an uploaded file only after delete its relevent record in the database.    
+You should physically remove an uploaded file only after deleting its relevent record in the database.    
