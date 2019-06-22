@@ -103,10 +103,10 @@ If the uploaded file is not valid, then ```false``` will be returned and an erro
 <!DOCTYPE html>
 <html>
 <head>
-	<title>File Upload</title>
-	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<link href="{{ mix('/css/app.css') }}" rel="stylesheet">
-	<script src="{{ mix('/js/app.js') }}"></script>
+    <title>File Upload</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
+    <script src="{{ mix('/js/app.js') }}"></script>
 
     <!-- You must embed fileinput CSS and Javascript as follows -->
     <script src="/vendor/fileupload/js/fileinput/fileinput.min.js"></script>
