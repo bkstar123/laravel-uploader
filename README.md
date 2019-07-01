@@ -156,6 +156,78 @@ return json_encode([
 ]);
 ```
 
+#### 3.2.3 AJAX uploading using @bkstar18/jquery-ajax-uploader plugin (***written by myself***)
+
+You can check its full documentation at https://github.com/bkstar123/jquery-ajax-uploader  
+
+**Example use**:
+
+***a) Installation***
+- ```npm install --save-dev @bkstar18/jquery-ajax-uploader```  
+
+- In ```resources/js/bootstrap.js```, place the following line:  
+```javascript
+try {
+    window.Popper = require('popper.js').default;
+    window.$ = window.jQuery = require('jquery');
+
+    require('bootstrap'); 
+    require('@bkstar18/jquery-ajax-uploader'); // Add this line
+} catch (e) {}
+```
+
+- Then, compile your assets using ```laravel-mix```: ```npm run production```  
+
+- Alternatively, if you do not want to bundle this plugin into the main app.js, you can place the following line in ```webpack.mix.js```:  
+```javascript
+mix.js('resources/js/app.js', 'public/js')
+   .copy('node_modules/@bkstar18/jquery-ajax-uploader/dist/bkstar123-ajax-uploader.min.js', 'public/js/bkstar123-ajax-uploader.min.js') // Add this line
+   .sass('resources/sass/app.scss', 'public/css');
+```
+
+Then, include ```<script src="/js/bkstar123-ajax-uploader.min.js"></script>``` in any view where you want to use the plugin. Remember to load JQuery before using the plugin.  
+
+***b) In HTML section***  
+```html
+<div class="form-group">
+    <label for="image-upload">Upload Images</label>
+    <input type="file" class="form-control" name="image" id="image-upload" multiple>
+    <div class="gallery" id="gallery"></div>
+</div>
+```
+
+***c) In Javascript section***  
+```javascript
+$(document).ready(function () {
+    $('#image-upload').bkstar123_ajaxuploader({
+        allowedExtensions: ['png','jpg','jpeg'],
+        batchSize: 5,
+        outerClass: 'col-md-12',
+        uploadUrl: '/api/upload',
+        beforeSend: (xhr) => {
+            xhr.setRequestHeader('X-AUTHOR', 'TUANHA');
+        },
+        onResponse: (response) => {
+            let res = JSON.parse(response)
+            $('#gallery').append(`<img id=${res.data.filename} src="${res.data.url}" width="50px">`);
+        }
+    });
+});
+```
+
+***d) In Laravel Controller method***  
+```php
+public function upload(Request $request, FileUpload $fileupload)
+{
+    $data = $fileupload->handle($request, 'image', ['allowedExtensions' => ['jpg', 'png', 'jpeg']]);
+    if (!$data) {
+        return response()->json(['error' => $fileupload->uploadError], 500);
+    }
+
+    return response()->json(['success' => "{$data['filename']} has been successfully uploaded", 'data' => $data], 200);
+}
+```
+
 ### 3.3 Physically remove an uploaded file
 
 You can physically delete an uploaded file as following example:    

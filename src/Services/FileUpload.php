@@ -41,12 +41,12 @@ class FileUpload extends FileUploadAbstract
         }
 
         if (!in_array($this->getExtension($uploadedFile), $settings['allowedExtensions'])) {
-            $this->uploadError = 'The extension ' . $this->getExtension($uploadedFile) . " is not allowed";
+            $this->uploadError = "Extension {$this->getExtension($uploadedFile)} is not allowed";
             return false;
         }
 
         if ($this->getFileSize($uploadedFile) > $settings['maxFileSize']) {
-            $this->uploadError = "The file size exceeds the max value set by the application";
+            $this->uploadError = "An upload file cannot exceed {$settings['maxFileSize']} bytes";
             return false;
         }
 
