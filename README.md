@@ -233,11 +233,11 @@ You should make sure that the page html layout has the following ```<meta>``` ta
 <meta name="csrf-token" content="{{ csrf_token() }}">
 ```
 
-Otherwise, the request will be blocked by Laravel by default. See more details at https://laravel.com/docs/5.8/csrf#csrf-x-csrf-token.  
+Otherwise, the request may be blocked by Laravel by default. See more details at https://laravel.com/docs/5.8/csrf#csrf-x-csrf-token.  
 
-The plugin automatically checks the existance of this ```<meta>``` tag, get its content and associate ```X-CSRF-TOKEN``` header with the uploading request.  
+The plugin automatically checks the existence of this ```<meta>``` tag, get its content and associate ```X-CSRF-TOKEN``` header with the uploading request.  
  
-Alternatively, ***if and only if*** this ```<meta>``` tag does not exists (maybe you do not want to use, for somewhat reasons), then you can include ```X-CSRF-TOKEN``` request header before sending files to server via ```beforeSend(xhr)``` hook as follows:  
+Alternatively, ***if and only if*** this ```<meta>``` tag does not exists (maybe you do not want to use, or for somewhat reasons), then you can include ```X-CSRF-TOKEN``` request header before sending files to server via ```beforeSend(xhr)``` hook as follows:  
 
 ```javascript
 $(document).ready(function () {
