@@ -11,7 +11,7 @@ It is recommended to install this package with PHP version 7.1.3+ and Laravel Fr
 You can upload files to the backend either via a normal form submit or via AJAX calls (built by yourself or any third party plugins).  
 
 **Note**: 
-- Form submit supports only single file upload. For multiple files upload, you should use AJAX uploading  
+- Form submit supports only single file upload. For multiple files upload, you should use AJAX to send files in parallel requests   
 
 - The package also includes a frontend fileinput plugin from Krajee for quickly demonstrating the AJAX uploading. The assets included in the package are barely minimum and may not be up to date. You should consult http://plugins.krajee.com/file-input for the latest version and more advanced use cases of the plugin  
 
@@ -88,15 +88,15 @@ If the uploaded file is not valid, then ```false``` will be returned and an erro
 **Example**:  
 ```html
 <form action="/upload" method="POST" role="form" enctype="multipart/form-data">
-	@csrf()
-	<input class="form-control" type="file" name="photo" id="photo" />
-	<input type="submit" name="submit" value="Upload" />
+    @csrf()
+    <input class="form-control" type="file" name="photo" id="photo" />
+    <input type="submit" name="submit" value="Upload" />
 </form>
 ```
 
 #### 3.2.2 AJAX uploading using default frontend assets from Krajee
 
-(Support multiple files upload)  
+(Support sending multiple files in parallel requests)  
 
 **Example**:  
 ```html
@@ -113,10 +113,9 @@ If the uploaded file is not valid, then ```false``` will be returned and an erro
     <link href="/vendor/fileupload/css/fileinput/fileinput.min.css" rel="stylesheet">
 </head>
 <body>
-<form action="/upload" method="POST" role="form" enctype="multipart/form-data">
-	@csrf()
-	<input class="form-control" type="file" name="photo" id="photo" multiple />
-</form>
+
+<input class="form-control" type="file" name="photo" id="photo" multiple />
+
 
 <script type="text/javascript">
     $(document).ready(function(){
@@ -226,6 +225,30 @@ public function upload(Request $request, FileUpload $fileupload)
 
     return response()->json(['success' => "{$data['filename']} has been successfully uploaded", 'data' => $data], 200);
 }
+```
+
+**Note**:  
+You should make sure that the page html layout has the following ```<meta>``` tag:  
+```html
+<meta name="csrf-token" content="{{ csrf_token() }}">
+```
+
+Otherwise, the request will be blocked by Laravel by default. See more details at https://laravel.com/docs/5.8/csrf#csrf-x-csrf-token.  
+
+The plugin automatically checks the existance of this ```<meta>``` tag, get its content and associate ```X-CSRF-TOKEN``` header with the uploading request.  
+ 
+Alternatively, ***if and only if*** this ```<meta>``` tag does not exists (maybe you do not want to use, for somewhat reasons), then you can include ```X-CSRF-TOKEN``` request header before sending files to server via ```beforeSend(xhr)``` hook as follows:  
+
+```javascript
+$(document).ready(function () {
+    $('#image-upload').bkstar123_ajaxuploader({
+        ...
+        beforeSend: (xhr) => {
+            xhr.setRequestHeader('X-CSRF-TOKEN', {!! json_encode(csrf_token()) !!});
+        },
+        ...
+    });
+});
 ```
 
 ### 3.3 Physically remove an uploaded file
