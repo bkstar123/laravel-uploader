@@ -220,9 +220,9 @@ public function upload(Request $request, FileUpload $fileupload)
 {
     $data = $fileupload->handle($request, 'image', ['allowedExtensions' => ['jpg', 'png', 'jpeg']]);
     if (!$data) {
-        return response()->json(['error' => $fileupload->uploadError], 500);
+        return response()->json(['error' => $fileupload->uploadError], 422);
     }
-
+    // Saving data to database
     return response()->json(['success' => "{$data['filename']} has been successfully uploaded", 'data' => $data], 200);
 }
 ```
