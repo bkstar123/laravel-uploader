@@ -253,11 +253,11 @@ $(document).ready(function () {
 
 ### 3.3 Physically remove an uploaded file
 
-You can physically delete an uploaded file as following example:    
+You can physically delete an uploaded file as in following example:  
 ```php
-$this->fileupload->delete($photo->disk, $photo->path)
+$this->fileupload->delete($photo->disk, $photo->path)  
 ```
 
 In this example, the **photos** table must have ```disk``` and ```path``` columns to persist a ```photo``` instance.  
 
-You should physically remove an uploaded file only after deleting its relevent record in the database.    
+You should physically remove an uploaded file only after deleting its relevant record in the database.  
