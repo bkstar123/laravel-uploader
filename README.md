@@ -1,5 +1,5 @@
 # laravel-uploader    
-Provide a Laravel backend for handling file upload  
+> Provide a Laravel backend for handling file upload  
 
 ## 1.Requirements  
 
@@ -250,6 +250,9 @@ $(document).ready(function () {
     });
 });
 ```
+
+#### 3.2.4 AJAX uploading using @bkstar18/vue-ajax-uploader plugin (***written by myself***)
+Check https://github.com/bkstar123/vue-ajax-uploader for details.  
 
 ### 3.3 Physically remove an uploaded file
 
