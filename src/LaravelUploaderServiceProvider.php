@@ -20,8 +20,6 @@ class LaravelUploaderServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->mergeConfigFrom(__DIR__.'/Config/bkstar123_fileupload.php', 'bkstar123_fileupload');
-
         $this->publishes([
             __DIR__.'/Resources/Assets' => public_path('vendor/fileupload'),
         ], 'bkstar123_fileupload.assets');
@@ -35,5 +33,6 @@ class LaravelUploaderServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton(FileUploadContract::class, FileUploadMgmt::class);
+        $this->mergeConfigFrom(__DIR__.'/Config/bkstar123_fileupload.php', 'bkstar123_fileupload');
     }
 }
