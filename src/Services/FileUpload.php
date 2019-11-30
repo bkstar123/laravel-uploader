@@ -40,6 +40,10 @@ class FileUpload extends FileUploadAbstract
             return false;
         }
 
+        $settings['allowedExtensions'] = array_map(function ($key) {
+            return strtolower($key);
+        }, $settings['allowedExtensions']);
+
         if (!in_array($this->getExtension($uploadedFile), $settings['allowedExtensions'])) {
             $this->uploadError = "Extension {$this->getExtension($uploadedFile)} is not allowed";
             return false;
