@@ -40,12 +40,6 @@ class FileUpload extends FileUploadAbstract
             return false;
         }
 
-        $settings['allowedExtensions'] = array_map(function ($key) {
-            return strtolower($key);
-        }, $settings['allowedExtensions']);
-
-        $settings['allowedExtensions'] = array_unique($settings['allowedExtensions']);
-
         if (!in_array($this->getExtension($uploadedFile), $settings['allowedExtensions'])) {
             $this->uploadError = "Extension {$this->getExtension($uploadedFile)} is not allowed";
             return false;
@@ -68,7 +62,7 @@ class FileUpload extends FileUploadAbstract
      */
     protected function getExtension(UploadedFile $uploadedFile)
     {
-        return $uploadedFile->getClientOriginalExtension();
+        return strtolower($uploadedFile->getClientOriginalExtension());
     }
 
     /**
