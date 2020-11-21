@@ -100,7 +100,7 @@ class FileUpload extends FileUploadAbstract
      */
     protected function getFileSize(UploadedFile $uploadedFile)
     {
-        return $uploadedFile->getClientSize();
+        return $uploadedFile->getSize();
     }
 
     /**
